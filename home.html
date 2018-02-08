@@ -18,22 +18,18 @@
 	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.6.0/firebaseui.css" />
 	<title>Vending Machine Console</title>
     <script type="text/javascript">
-      // FirebaseUI config.
-      // Initialize the FirebaseUI Widget using Firebase.
-      var ui = new firebaseui.auth.AuthUI(firebase.auth());
-      if (ui.isPendingRedirect()) {
- 		 ui.start('#firebaseui-auth-container', uiConfig);
-		}
-      // The start method will wait until the DOM is loaded.
-      // ui.start('#firebaseui-auth-container', uiConfig);
-      ui.start('#firebaseui-auth-container', {
-		signInOptions: [
+        var user = firebase.auth().currentUser;
+		var name, email, photoUrl, uid, emailVerified;
+        if (user != null) 
 	    {
-	      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-	      requireDisplayName: false
-	    }
-		  ]
-		});
+		  name = user.displayName;
+		  email = user.email;
+		  photoUrl = user.photoURL;
+		  emailVerified = user.emailVerified;
+		  uid = user.uid;
+		  console.log(email);
+		  console.log(name);
+		}
       function createuser()
       {
       	email = document.getElementById(email).value;
