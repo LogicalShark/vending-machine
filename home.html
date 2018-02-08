@@ -16,18 +16,9 @@
 	</script>
 	<script src="https://cdn.firebase.com/libs/firebaseui/2.6.0/firebaseui.js"></script>
 	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.6.0/firebaseui.css" />
-	<title>Vending Machine Login</title>
+	<title>Vending Machine Console</title>
     <script type="text/javascript">
       // FirebaseUI config.
-      var uiConfig = {
-        signInSuccessUrl: 'https://logicalshark.github.io/vending-machine/',
-        signInOptions: [
-          firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        ],
-        // Terms of service url.
-        tosUrl: 'https://logicalshark.github.io/vending-machine/'
-      };
-
       // Initialize the FirebaseUI Widget using Firebase.
       var ui = new firebaseui.auth.AuthUI(firebase.auth());
       if (ui.isPendingRedirect()) {
@@ -36,7 +27,7 @@
       // The start method will wait until the DOM is loaded.
       // ui.start('#firebaseui-auth-container', uiConfig);
       ui.start('#firebaseui-auth-container', {
-		signInOptions = [
+		signInOptions: [
 	    {
 	      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
 	      requireDisplayName: false
