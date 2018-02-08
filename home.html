@@ -35,31 +35,38 @@
 			{
 				document.getElementById("camera").style.display = "none";
 				document.getElementById("photo").src = photoUrl;
-				// var pathRef = storage.ref('images/'+photoUrl);
-				// pathRef.getDownloadURL().then(function(url) {
-				// document.getElementById("photo").src = url;
-				// }).catch(function(error) {
-				//   switch (error.code) {
-				//     case 'storage/object_not_found':
-				//     	alert("File not found");
-				//       break;
-				//     case 'storage/unauthorized':
-				//     	alert("Unauthorized");
-				// 	      break;
-				//     case 'storage/canceled':
-				//     	alert("Cancelled");
-				//       break;
-				//     case 'storage/unknown':
-				//     	alert("Unknown error");
-				//       break;
-				//   }
-				// });
 			}
 
 		}
 		else
 		{
 			console.log("No user");
+			var ui = new firebaseui.auth.AuthUI(firebase.auth());
+			var uiConfig = {
+				callbacks: {
+					signInSuccess: function(currentUser, credential, redirectUrl) {
+			      // User successfully signed in.
+			      // Return type determines whether we continue the redirect automatically
+			      // or whether we leave that to developer to handle.
+			      return true;
+			  },
+			  uiShown: function() {
+			      // The widget is rendered.
+			      // Hide the loader.
+			      document.getElementById('loader').style.display = 'none';
+			  }
+			},
+			  // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+			  signInFlow: 'popup',
+			  signInSuccessUrl: '',
+			  signInOptions: [
+			    // Leave the lines as is for the providers you want to offer your users.
+			    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+			    ],
+			  // Terms of service url.
+			  tosUrl: ''
+			};
+			ui.start('#firebaseui-auth-container', uiConfig);
 		}
 		function createuser()
 		{
@@ -152,7 +159,7 @@
 </head>
 <body>
 	<h1 style="text-align: center;">Vending Machine Console</h1>
-	<div id="account-details"></div>
+	<input type="text" id="email">
 	<br>
 	<div class="camera">
 		<button id="startbutton">Take photo</button>
@@ -165,6 +172,8 @@
 		<img id="photo" alt="The screen capture will appear in this box.">
 	</div>
 	<br>
+	<div id="firebaseui-auth-container"></div>
 	<input type="button" onClick="signout()" value="Sign out">
+
 </body>
 </html>
