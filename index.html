@@ -33,6 +33,16 @@
 	    }
 		  ]
 		});
+      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+		  // Handle Errors here.
+		  var errorCode = error.code;
+		  var errorMessage = error.message;
+		  // ...
+		});
+      function createuser()
+      {
+      	createUserWithEmailAndPassword(document.getElementById(email).value, document.getElementById(password).value)
+      }
     </script>
 </head>
 <body>
@@ -41,6 +51,9 @@
     <div id="sign-in-status"></div>
     <div id="sign-in"></div>
     <div id="account-details"></div>
+    <input type="text" id="email" placeholder="Email">
+    <input type="text" id="password" placeholder="Password">
+    <input type="button" onClick="createuser()" name="Register">
 </body>
 <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
 <script>
