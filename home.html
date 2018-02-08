@@ -5,52 +5,53 @@
 	<script>
 	  // Initialize Firebase
 	  var config = {
-	    apiKey: "AIzaSyBocmLou88UKUDCpk-LBqqaWJ0ToPp2Hl0",
-	    authDomain: "vending-machine-d6262.firebaseapp.com",
-	    databaseURL: "https://vending-machine-d6262.firebaseio.com",
-	    projectId: "vending-machine-d6262",
-	    storageBucket: "vending-machine-d6262.appspot.com",
-	    messagingSenderId: "361000162855"
+	  	apiKey: "AIzaSyBocmLou88UKUDCpk-LBqqaWJ0ToPp2Hl0",
+	  	authDomain: "vending-machine-d6262.firebaseapp.com",
+	  	databaseURL: "https://vending-machine-d6262.firebaseio.com",
+	  	projectId: "vending-machine-d6262",
+	  	storageBucket: "vending-machine-d6262.appspot.com",
+	  	messagingSenderId: "361000162855"
 	  };
 	  firebase.initializeApp(config);
 	</script>
 	<script src="https://cdn.firebase.com/libs/firebaseui/2.6.0/firebaseui.js"></script>
 	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.6.0/firebaseui.css" />
 	<title>Vending Machine Console</title>
-    <script type="text/javascript">
-        var user = firebase.auth().currentUser;
+	<script type="text/javascript">
+		var user = firebase.auth().currentUser;
 		var name, email, photoUrl, uid, emailVerified;
-        if (user != null) 
-	    {
-		  name = user.displayName;
-		  email = user.email;
-		  photoUrl = user.photoURL;
-		  emailVerified = user.emailVerified;
-		  uid = user.uid;
-		  console.log(email);
-		  console.log(name);
+		if (user != null) 
+		{
+			name = user.displayName;
+			email = user.email;
+			photoUrl = user.photoURL;
+			emailVerified = user.emailVerified;
+			uid = user.uid;
+			console.log(email);
+			console.log(name);
 		}
-      function createuser()
-      {
-      	email = document.getElementById(email).value;
-      	password = document.getElementById(password).value;
-	      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+		function createuser()
+		{
+			email = document.getElementById(email).value;
+			password = document.getElementById(password).value;
+			firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
 		  // Handle Errors here.
 		  var errorCode = error.code;
 		  var errorMessage = error.message;
 		  // ...
 		});
-      }
-      function signin()
-      {
-      	email = document.getElementById(email).value;
-      	password = document.getElementById(password).value;
-      	firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+		}
+		function signin()
+		{
+			email = document.getElementById(email).value;
+			password = document.getElementById(password).value;
+			firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
 		  // Handle Errors here.
 		  var errorCode = error.code;
 		  var errorMessage = error.message;
 		  // ...
 		});
+		}
 		function signout()
 		{
 			firebase.auth().signOut().then(function() {
@@ -63,13 +64,12 @@
 		{
 
 		}
-      }
-    </script>
+	</script>
 </head>
 <body>
 	<h1 style="text-align: center;">Vending Machine Console</h1>
-    <div id="account-details"></div>
-    <input type="button" onClick="takepic()" value="Take Picture">
-    <input type="button" onClick="signout()" value="Sign out">
+	<div id="account-details"></div>
+	<input type="button" onClick="takepic()" value="Take Picture">
+	<input type="button" onClick="signout()" value="Sign out">
 </body>
 </html>

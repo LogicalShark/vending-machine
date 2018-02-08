@@ -46,36 +46,6 @@
 	    }
 		  ]
 		});
-      function createuser()
-      {
-      	email = document.getElementById(email).value;
-      	password = document.getElementById(password).value;
-	      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-		  // Handle Errors here.
-		  var errorCode = error.code;
-		  var errorMessage = error.message;
-		  // ...
-		});
-      }
-      function signin()
-      {
-      	email = document.getElementById(email).value;
-      	password = document.getElementById(password).value;
-      	firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-		  // Handle Errors here.
-		  var errorCode = error.code;
-		  var errorMessage = error.message;
-		  // ...
-		});
-		function signout()
-		{
-			firebase.auth().signOut().then(function() {
-			  // Sign-out successful.
-			}).catch(function(error) {
-			  // An error happened.
-			});
-		}
-      }
     </script>
 </head>
 <body>
