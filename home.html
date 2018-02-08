@@ -74,19 +74,19 @@
 			ui.start('#firebaseui-auth-container', uiConfig);
 		}
 		firebase.auth().onAuthStateChanged(function(user) {
-		  if (user) {
-		  	var name, email, photoUrl, uid, emailVerified;
-			if (user != null) 
-			{
-				name = user.displayName;
-				email = user.email;
-				photoUrl = user.photoURL;
-				emailVerified = user.emailVerified;
-				uid = user.uid;
-				console.log(email);
-				console.log(name);
-				if(photoUrl != null)
+			if (user) {
+				var name, email, photoUrl, uid, emailVerified;
+				if (user != null) 
 				{
+					name = user.displayName;
+					email = user.email;
+					photoUrl = user.photoURL;
+					emailVerified = user.emailVerified;
+					uid = user.uid;
+					console.log(email);
+					console.log(name);
+					if(photoUrl != null)
+					{
 					// var p = document.createElement("p");
 					// p.innerHTML = "Current Photo"
 					// var profile = document.createElement("img");
@@ -96,10 +96,10 @@
 				}
 			}
 
-		  } else {
+		} else {
 		    // No user is signed in.
-		  }
-		});
+		}
+	});
 		function createuser()
 		{
 			email = document.getElementById(email).value;
@@ -130,24 +130,37 @@
 			  // An error happened.
 			});
 		}
-		function newImage(uid, image) {
-		  var imgData = {
-		    uid: uid,
-		    image: image
-		  };
-		  var newImgKey = firebase.database().ref().child('images').push().key;
-		  var updates = {};
-		  updates['/users/' + uid + '/images/' + newImgKey] = imgData;
+		function newImage(uid, image) 
+		{
+			var imgData = {
+				uid: uid,
+				image: image
+			};
+			var newImgKey = firebase.database().ref().child('images').push().key;
+			var updates = {};
+			updates['/users/' + uid + '/images/' + newImgKey] = imgData;
 
-		  return firebase.database().ref().update(updates);
+			return firebase.database().ref().update(updates);
+		}
+		function newMedicine(uid, image) 
+		{
+			var imgData = {
+				uid: uid,
+				image: image
+			};
+			var newImgKey = firebase.database().ref().child('images').push().key;
+			var updates = {};
+			updates['/users/' + uid + '/images/' + newImgKey] = imgData;
+
+			return firebase.database().ref().update(updates);
 		}
 		function upload()
 		{
 			var user = firebase.auth().currentUser;
 			var pURL = document.getElementById("canvas").toDataURL();
 			user.updateProfile({
-			  displayName: "",
-			  photoURL: pURL
+				displayName: "",
+				photoURL: pURL
 			}).then(function() {
 			  // Update successful.
 			}).catch(function(error) {
@@ -155,39 +168,34 @@
 			});
 			newImage(user.uid, pURL);
 		}
-		function fileUpload()
+		function uploadmedi()
 		{
-		    var x = document.getElementById("myFile");
-		    var txt = "";
-		    if ('files' in x) 
-		    {
-		        if (x.files.length == 0) 
-		        {
-		            txt = "Select one or more files.";
-		        } 
-		        else 
-		        {
-		            for (var i = 0; i < x.files.length; i++) 
-		            {
-		            	f = files[i];
-		            	console.log(f);
-		            	if(f.url != null)
-		            	{
-		            		console.log(f.url);
-		            	}
-		            }
-				}
-		    } 
-		    else {
-		        if (x.value == "") {
-		            txt += "Select one or more files.";
-		        } else {
-		            txt += "The files property is not supported by your browser!";
-		            txt  += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
-		        }
-		    }
-		    document.getElementById("demo").innerHTML = txt;
+			newMedicine(document.getElementById("uid").value, document.getElementById("medi").value);
 		}
+		function handleFiles(files) 
+		{
+				for (var i = 0; i < files.length; i++) 
+				{
+					var file = files[i];
+					if (!file.type.startsWith('image/'))
+					{
+						continue
+					}
+					var img = document.createElement("img");
+					img.classList.add("obj");
+					img.file = file;
+			    	preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
+				    var reader = new FileReader();
+				    reader.onload = (function(aImg) 
+				    				{ 
+				    					return function(e) 
+				    							{ 
+				    								aImg.src = e.target.result;
+				    								newImage(document.getElementById("uid").value, image); 
+				    							}; 
+		    						})(img);
+					reader.readAsDataURL(file);
+				}
 		}
 </script>
 </head>
@@ -206,6 +214,9 @@
 	<div class="output">
 		<img id="photo" alt="The screen capture will appear in this box.">
 	</div>
-	<input type="file" id="myFile" onchange="fileUpload()">
+	<input type="file" id="myFile" onchange="handleFiles(this.files)" value="Upload Files">
+	<input type="text" id="uid" placeholder="User ID">
+	<input type="text" id="medi" placeholder="Medicine">
+	<button id="uploadmedi" onclick="uploadmedi()">Upload Medicine</button>
 </body>
 </html>
