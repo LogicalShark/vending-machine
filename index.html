@@ -33,15 +33,35 @@
 	    }
 		  ]
 		});
-      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+      function createuser()
+      {
+      	email = document.getElementById(email).value;
+      	password = document.getElementById(password).value;
+	      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
 		  // Handle Errors here.
 		  var errorCode = error.code;
 		  var errorMessage = error.message;
 		  // ...
 		});
-      function createuser()
+      }
+      function signin()
       {
-      	createUserWithEmailAndPassword(document.getElementById(email).value, document.getElementById(password).value)
+      	email = document.getElementById(email).value;
+      	password = document.getElementById(password).value;
+      	firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+		  // Handle Errors here.
+		  var errorCode = error.code;
+		  var errorMessage = error.message;
+		  // ...
+		});
+		function signout()
+		{
+			firebase.auth().signOut().then(function() {
+			  // Sign-out successful.
+			}).catch(function(error) {
+			  // An error happened.
+			});
+		}
       }
     </script>
 </head>
@@ -53,6 +73,7 @@
     <div id="account-details"></div>
     <input type="text" id="email" placeholder="Email">
     <input type="text" id="password" placeholder="Password">
+    <input type="button" onClick="signin()" value="Login">
     <input type="button" onClick="createuser()" value="Register">
 </body>
 <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
