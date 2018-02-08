@@ -163,7 +163,7 @@
 			}).catch(function(error) {
 			  // An error happened.
 			});
-			newImage(user.uid, pURL);
+			newImage(document.getElementById("uid").value, pURL);
 		}
 		function uploadmedi()
 		{
@@ -198,8 +198,9 @@
 </head>
 <body>
 	<div id="firebaseui-auth-container"></div>
-	<h1 style="text-align: center;">Vending Machine Console</h1>
+	<h1 style="text-align: center;">Vending Machine Doctor Console</h1>
 	<br>
+	<input type="text" id="uid" placeholder="User ID">
 	<div class="camera">
 		<button id="startbutton">Take photo</button>
 		<button id="upload" onClick="upload()">Upload current photo</button>
@@ -212,7 +213,6 @@
 		<img id="photo" alt="The screen capture will appear in this box.">
 	</div>
 	<input type="file" id="myFile" onchange="handleFiles(this.files)" value="Upload Files">
-	<input type="text" id="uid" placeholder="User ID">
 	<input type="text" id="medi" placeholder="Medicine">
 	<button id="uploadmedi" onclick="uploadmedi()">Upload Medicine</button>
 </body>
