@@ -30,7 +30,6 @@
 			photoUrl = user.photoURL;
 			emailVerified = user.emailVerified;
 			uid = user.uid;
-			console.log(photoUrl);
 			console.log(email);
 			console.log(name);
 			if(photoUrl != null)
@@ -79,7 +78,6 @@
 				photoUrl = user.photoURL;
 				emailVerified = user.emailVerified;
 				uid = user.uid;
-				console.log(photoUrl);
 				console.log(email);
 				console.log(name);
 				if(photoUrl != null)
@@ -183,8 +181,8 @@
 </style>
 </head>
 <body>
+	<div id="firebaseui-auth-container"></div>
 	<h1 style="text-align: center;">Vending Machine Console</h1>
-	<input type="text" id="email">
 	<br>
 	<div class="camera">
 		<button id="startbutton">Take photo</button>
@@ -197,7 +195,6 @@
 		<img id="photo" alt="The screen capture will appear in this box.">
 	</div>
 	<br>
-	<div id="firebaseui-auth-container"></div>
 	<input type="button" onClick="signout()" value="Sign out">
 
 </body>
