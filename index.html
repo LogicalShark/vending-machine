@@ -191,7 +191,7 @@
 				    					return function(e) 
 				    							{ 
 				    								aImg.src = e.target.result;
-				    								newImage(document.getElementById("uid").value, image); 
+				    								newImage(document.getElementById("uid").value, e.target.result); 
 				    							}; 
 		    						})(img);
 					reader.readAsDataURL(file);
