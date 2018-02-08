@@ -76,7 +76,7 @@
 		firebase.auth().onAuthStateChanged(function(user) {
 			if (user) {
 				var name, email, photoUrl, uid, emailVerified;
-				if (user != null) 
+				if (user != null)
 				{
 					name = user.displayName;
 					email = user.email;
@@ -95,7 +95,6 @@
 					// document.body.appendChild(profile);
 				}
 			}
-
 		} else {
 		    // No user is signed in.
 		}
@@ -130,7 +129,7 @@
 			  // An error happened.
 			});
 		}
-		function newImage(uid, image) 
+		function newImage(uid, image)
 		{
 			var imgData = {
 				uid: uid,
@@ -139,10 +138,9 @@
 			var newImgKey = firebase.database().ref().child('images').push().key;
 			var updates = {};
 			updates['/users/' + uid + '/images/' + newImgKey] = imgData;
-
 			return firebase.database().ref().update(updates);
 		}
-		function newMedicine(uid, image) 
+		function newMedicine(uid, image)
 		{
 			var imgData = {
 				uid: uid,
@@ -151,7 +149,6 @@
 			var newImgKey = firebase.database().ref().child('medicine').push().key;
 			var updates = {};
 			updates['/users/' + uid + '/medicine/' + newImgKey] = imgData;
-
 			return firebase.database().ref().update(updates);
 		}
 		function upload()
@@ -172,9 +169,9 @@
 		{
 			newMedicine(document.getElementById("uid").value, document.getElementById("medi").value);
 		}
-		function handleFiles(files) 
+		function handleFiles(files)
 		{
-				for (var i = 0; i < files.length; i++) 
+				for (var i = 0; i < files.length; i++)
 				{
 					var file = files[i];
 					if (!file.type.startsWith('image/'))
@@ -186,13 +183,13 @@
 					img.file = file;
 			    	preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
 				    var reader = new FileReader();
-				    reader.onload = (function(aImg) 
-				    				{ 
-				    					return function(e) 
-				    							{ 
+				    reader.onload = (function(aImg)
+				    				{
+				    					return function(e)
+				    							{
 				    								aImg.src = e.target.result;
-				    								newImage(document.getElementById("uid").value, e.target.result); 
-				    							}; 
+				    								newImage(document.getElementById("uid").value, e.target.result);
+				    							};
 		    						})(img);
 					reader.readAsDataURL(file);
 				}
