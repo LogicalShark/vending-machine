@@ -29,25 +29,26 @@
 			if(photoUrl != null)
 			{
 				document.getElementById("camera").style.display = "none";
-				var pathRef = storage.ref('images/'+photoUrl);
-				pathRef.getDownloadURL().then(function(url) {
-				document.getElementById("photo").src = url;
-				}).catch(function(error) {
-				  switch (error.code) {
-				    case 'storage/object_not_found':
-				    	alert("File not found");
-				      break;
-				    case 'storage/unauthorized':
-				    	alert("Unauthorized");
-					      break;
-				    case 'storage/canceled':
-				    	alert("Cancelled");
-				      break;
-				    case 'storage/unknown':
-				    	alert("Unknown error");
-				      break;
-				  }
-				});
+				document.getElementById("photo").src = photoUrl;
+				// var pathRef = storage.ref('images/'+photoUrl);
+				// pathRef.getDownloadURL().then(function(url) {
+				// document.getElementById("photo").src = url;
+				// }).catch(function(error) {
+				//   switch (error.code) {
+				//     case 'storage/object_not_found':
+				//     	alert("File not found");
+				//       break;
+				//     case 'storage/unauthorized':
+				//     	alert("Unauthorized");
+				// 	      break;
+				//     case 'storage/canceled':
+				//     	alert("Cancelled");
+				//       break;
+				//     case 'storage/unknown':
+				//     	alert("Unknown error");
+				//       break;
+				//   }
+				// });
 			}
 			emailVerified = user.emailVerified;
 			uid = user.uid;
@@ -88,18 +89,18 @@
 		}
 		function upload()
 		{
-			var storageRef = firebase.storage().ref();
+			// var storageRef = firebase.storage().ref();
 			var user = firebase.auth().currentUser;
-			var filename = document.getElementById("photo").src;
+			// var filename = document.getElementById("photo").src;
 			user.updateProfile({
-			  displayName: "Jane Q. User",
-			  photoURL: "images/"+filename
+			  displayName: "",
+			  photoURL: document.getElementById("canvas").toDataURL()
 			}).then(function() {
 			  // Update successful.
 			}).catch(function(error) {
 			  // An error happened.
 			});
-			var uploadTask = storageRef.child('images/' + filename).put(document.getElementById("photo"));
+			// var uploadTask = storageRef.child('images/' + filename).put(document.getElementById("photo"));
 		}
 </script>
 <style>
