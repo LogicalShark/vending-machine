@@ -26,10 +26,10 @@
 			name = user.displayName;
 			email = user.email;
 			photoUrl = user.photoURL;
-			if(photoURL != null)
+			if(photoUrl != null)
 			{
 				document.getElementById("camera").style.display = "none";
-				var pathRef = storage.ref('images/'+photoURL);
+				var pathRef = storage.ref('images/'+photoUrl);
 				pathRef.getDownloadURL().then(function(url) {
 				document.getElementById("photo").src = url;
 				}).catch(function(error) {
