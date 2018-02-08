@@ -32,11 +32,12 @@
 			uid = user.uid;
 			console.log(email);
 			console.log(name);
-			// if(photoUrl != null)
-			// {
-			// 	document.getElementById("camera").style.display = "none";
-			// 	document.getElementById("photo").src = photoUrl;
-			// }
+			if(photoUrl != null)
+			{
+				var profile = document.createElement("img")
+				profile.src = photoUrl;
+				document.body.appendChild(profile);
+			}
 		}
 		else
 		{
@@ -80,10 +81,12 @@
 				uid = user.uid;
 				console.log(email);
 				console.log(name);
-				// if(photoUrl != null)
-				// {
-				// 	document.getElementById("photo").src = photoUrl;
-				// }
+				if(photoUrl != null)
+				{
+					var profile = document.createElement("img")
+					profile.src = photoUrl;
+					document.body.appendChild(profile);
+				}
 			}
 
 		  } else {
