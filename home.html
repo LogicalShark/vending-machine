@@ -88,6 +88,7 @@
 		}
 		function upload()
 		{
+			var user = firebase.auth().currentUser;
 			var filename = document.getElementById("photo").src;
 			user.updateProfile({
 			  displayName: "Jane Q. User",
