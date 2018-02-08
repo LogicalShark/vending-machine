@@ -148,9 +148,9 @@
 				uid: uid,
 				image: image
 			};
-			var newImgKey = firebase.database().ref().child('images').push().key;
+			var newImgKey = firebase.database().ref().child('medicine').push().key;
 			var updates = {};
-			updates['/users/' + uid + '/images/' + newImgKey] = imgData;
+			updates['/users/' + uid + '/medicine/' + newImgKey] = imgData;
 
 			return firebase.database().ref().update(updates);
 		}
