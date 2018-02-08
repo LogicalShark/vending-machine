@@ -3,6 +3,7 @@
 <head >
 	<script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
 	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
 	<script src="photo.js"></script>
 	<script>
@@ -34,12 +35,12 @@
 			console.log(name);
 			if(photoUrl != null)
 			{
-				var p = document.createElement("p");
-				p.innerHTML = "Current Photo"
-				var profile = document.createElement("img");
-				profile.src = photoUrl;
-				document.body.appendChild(p);
-				document.body.appendChild(profile);
+				// var p = document.createElement("p");
+				// p.innerHTML = "Current Photo"
+				// var profile = document.createElement("img");
+				// profile.src = photoUrl;
+				// document.body.appendChild(p);
+				// document.body.appendChild(profile);
 			}
 		}
 		else
@@ -86,12 +87,12 @@
 				console.log(name);
 				if(photoUrl != null)
 				{
-					var p = document.createElement("p");
-					p.innerHTML = "Current Photo"
-					var profile = document.createElement("img");
-					profile.src = photoUrl;
-					document.body.appendChild(p);
-					document.body.appendChild(profile);
+					// var p = document.createElement("p");
+					// p.innerHTML = "Current Photo"
+					// var profile = document.createElement("img");
+					// profile.src = photoUrl;
+					// document.body.appendChild(p);
+					// document.body.appendChild(profile);
 				}
 			}
 
@@ -154,49 +155,41 @@
 			});
 			newImage(user.uid, pURL);
 		}
+		function fileUpload()
+		{
+		    var x = document.getElementById("myFile");
+		    var txt = "";
+		    if ('files' in x) 
+		    {
+		        if (x.files.length == 0) 
+		        {
+		            txt = "Select one or more files.";
+		        } 
+		        else 
+		        {
+		            for (var i = 0; i < x.files.length; i++) 
+		            {
+		            	f = files[i];
+		            	console.log(f);
+		            	if(f.url != null)
+		            	{
+		            		console.log(f.url);
+		            	}
+		            }
+				}
+		    } 
+		    else {
+		        if (x.value == "") {
+		            txt += "Select one or more files.";
+		        } else {
+		            txt += "The files property is not supported by your browser!";
+		            txt  += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
+		        }
+		    }
+		    document.getElementById("demo").innerHTML = txt;
+		}
+		}
 </script>
-<style>
-#photo {
-	border: 1px solid black;
-	box-shadow: 2px 2px 3px black;
-	width:320px;
-	height:240px;
-}
-
-#canvas {
-	display:none;
-}
-
-.camera {
-	width: 340px;
-	display:inline-block;
-}
-
-.output {
-	width: 340px;
-	display:inline-block;
-}
-
-#startbutton {
-	display:block;
-	position:relative;
-	margin-left:auto;
-	margin-right:auto;
-	bottom:32px;
-	background-color: rgba(0, 150, 0, 0.5);
-	border: 1px solid rgba(255, 255, 255, 0.7);
-	box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.2);
-	font-size: 14px;
-	font-family: "Lucida Grande", "Arial", sans-serif;
-	color: rgba(255, 255, 255, 1.0);
-}
-
-.contentarea {
-	font-size: 16px;
-	font-family: "Lucida Grande", "Arial", sans-serif;
-	width: 760px;
-}
-</style>
 </head>
 <body>
 	<div id="firebaseui-auth-container"></div>
@@ -204,7 +197,7 @@
 	<br>
 	<div class="camera">
 		<button id="startbutton">Take photo</button>
-		<button id="upload" onClick="upload()">Upload photo</button>
+		<button id="upload" onClick="upload()">Upload current photo</button>
 		<video id="video">Video stream not available.</video>
 	</div>
 	<br>
@@ -213,7 +206,6 @@
 	<div class="output">
 		<img id="photo" alt="The screen capture will appear in this box.">
 	</div>
-	<!-- <input type="button" onClick="signout()" value="Sign out"> -->
-
+	<input type="file" id="myFile" onchange="fileUpload()">
 </body>
 </html>
