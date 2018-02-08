@@ -23,7 +23,7 @@
 	<script type="text/javascript">
 		var user = firebase.auth().currentUser;
 		var name, email, photoUrl, uid, emailVerified;
-		if (user != null) 
+		if (user != null)
 		{
 			name = user.displayName;
 			email = user.email;
@@ -32,11 +32,11 @@
 			uid = user.uid;
 			console.log(email);
 			console.log(name);
-			if(photoUrl != null)
-			{
-				document.getElementById("camera").style.display = "none";
-				document.getElementById("photo").src = photoUrl;
-			}
+			// if(photoUrl != null)
+			// {
+			// 	document.getElementById("camera").style.display = "none";
+			// 	document.getElementById("photo").src = photoUrl;
+			// }
 		}
 		else
 		{
@@ -80,11 +80,10 @@
 				uid = user.uid;
 				console.log(email);
 				console.log(name);
-				if(photoUrl != null)
-				{
-					document.getElementById("camera").style.display = "none";
-					document.getElementById("photo").src = photoUrl;
-				}
+				// if(photoUrl != null)
+				// {
+				// 	document.getElementById("photo").src = photoUrl;
+				// }
 			}
 
 		  } else {
