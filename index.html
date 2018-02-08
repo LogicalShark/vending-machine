@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head >
+	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <link rel='stylesheet' type='text/css' href='/resources/tutorial/css/example.css'>
 	<script src="https://cdn.firebase.com/libs/firebaseui/2.6.0/firebaseui.js"></script>
 	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.6.0/firebaseui.css" />
 	<title>Vending Machine Login</title>
@@ -75,6 +78,7 @@
     <input type="text" id="password" placeholder="Password">
     <input type="button" onClick="signin()" value="Login">
     <input type="button" onClick="createuser()" value="Register">
+    <input type="button" onClick="signout()" value="Sign out">
 </body>
 <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
 <script>
