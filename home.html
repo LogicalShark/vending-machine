@@ -34,8 +34,11 @@
 			console.log(name);
 			if(photoUrl != null)
 			{
-				var profile = document.createElement("img")
+				var p = document.createElement("p");
+				p.innerHTML = "Current Photo"
+				var profile = document.createElement("img");
 				profile.src = photoUrl;
+				document.body.appendChild(p);
 				document.body.appendChild(profile);
 			}
 		}
@@ -83,8 +86,11 @@
 				console.log(name);
 				if(photoUrl != null)
 				{
-					var profile = document.createElement("img")
+					var p = document.createElement("p");
+					p.innerHTML = "Current Photo"
+					var profile = document.createElement("img");
 					profile.src = photoUrl;
+					document.body.appendChild(p);
 					document.body.appendChild(profile);
 				}
 			}
@@ -125,9 +131,7 @@
 		}
 		function upload()
 		{
-			// var storageRef = firebase.storage().ref();
 			var user = firebase.auth().currentUser;
-			// var filename = document.getElementById("photo").src;
 			user.updateProfile({
 			  displayName: "",
 			  photoURL: document.getElementById("canvas").toDataURL()
@@ -136,7 +140,6 @@
 			}).catch(function(error) {
 			  // An error happened.
 			});
-			// var uploadTask = storageRef.child('images/' + filename).put(document.getElementById("photo"));
 		}
 </script>
 <style>
@@ -191,13 +194,13 @@
 		<button id="upload" onClick="upload()">Upload photo</button>
 		<video id="video">Video stream not available.</video>
 	</div>
+	<br>
 	<canvas id="canvas">
 	</canvas>
 	<div class="output">
 		<img id="photo" alt="The screen capture will appear in this box.">
 	</div>
-	<br>
-	<input type="button" onClick="signout()" value="Sign out">
+	<!-- <input type="button" onClick="signout()" value="Sign out"> -->
 
 </body>
 </html>
