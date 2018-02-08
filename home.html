@@ -99,7 +99,7 @@
 			}).catch(function(error) {
 			  // An error happened.
 			});
-			var uploadTask = storageRef.child('images/' + filename).put(file);
+			var uploadTask = storageRef.child('images/' + filename).put(document.getElementById("photo"));
 		}
 </script>
 <style>
