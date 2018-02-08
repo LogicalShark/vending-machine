@@ -26,6 +26,11 @@
 			name = user.displayName;
 			email = user.email;
 			photoUrl = user.photoURL;
+			emailVerified = user.emailVerified;
+			uid = user.uid;
+			console.log(photoUrl);
+			console.log(email);
+			console.log(name);
 			if(photoUrl != null)
 			{
 				document.getElementById("camera").style.display = "none";
@@ -50,12 +55,6 @@
 				//   }
 				// });
 			}
-			emailVerified = user.emailVerified;
-			uid = user.uid;
-			console.log(photoUrl);
-			console.log(email);
-			console.log(name);
-			var storageRef = firebase.storage().ref();
 
 		}
 		function createuser()
