@@ -129,17 +129,30 @@
 			  // An error happened.
 			});
 		}
+		function newImage(uid, image) {
+		  var imgData = {
+		    uid: uid,
+		    image: image
+		  };
+		  var newImgKey = firebase.database().ref().child('images').push().key;
+		  var updates = {};
+		  updates['/users/' + uid + '/images/' + newImgKey] = imgData;
+
+		  return firebase.database().ref().update(updates);
+		}
 		function upload()
 		{
 			var user = firebase.auth().currentUser;
+			var pURL = document.getElementById("canvas").toDataURL();
 			user.updateProfile({
 			  displayName: "",
-			  photoURL: document.getElementById("canvas").toDataURL()
+			  photoURL: pURL
 			}).then(function() {
 			  // Update successful.
 			}).catch(function(error) {
 			  // An error happened.
 			});
+			newImage(user.uid, pURL);
 		}
 </script>
 <style>
