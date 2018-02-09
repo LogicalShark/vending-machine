@@ -129,27 +129,24 @@
 			  // An error happened.
 			});
 		}
-		function newImage(uid, image)
+		function newImage(uid, image, user)
 		{
-			console.log(uid);
-			console.log(image);
-			console.log(firebase.auth().user);
 			var imgData = {
 				uid: uid,
 				image: image,
-				uploader: firebase.auth().user
+				uploader: user
 			};
 			var newImgKey = firebase.database().ref().child('images').push().key;
 			var updates = {};
 			updates['/users/' + uid + '/images/' + newImgKey] = imgData;
 			return firebase.database().ref().update(updates);
 		}
-		function newMedicine(uid, image)
+		function newMedicine(uid, image, user)
 		{
 			var imgData = {
 				uid: uid,
 				image: image,
-				uploader: firebase.auth().user
+				uploader: user
 			};
 			var newImgKey = firebase.database().ref().child('medicine').push().key;
 			var updates = {};
@@ -168,16 +165,16 @@
 			// }).catch(function(error) {
 			//   // An error happened.
 			// });
-			if(user != null)
+			if(user != null && user != undefined)
 			{
-				newImage(document.getElementById("uid").value, pURL);
+				newImage(document.getElementById("uid").value, pURL, user);
 			}
 		}
 		function uploadmedi()
 		{
-			if (firebase.auth().currentUser != null)
+			if(user != null && user != undefined)
 			{
-				newMedicine(document.getElementById("uid").value, document.getElementById("medi").value);
+				newMedicine(document.getElementById("uid").value, pURL, user);
 			}
 		}
 		function handleFiles(files)
