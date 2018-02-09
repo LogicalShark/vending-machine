@@ -157,19 +157,25 @@
 		{
 			var user = firebase.auth().currentUser;
 			var pURL = document.getElementById("canvas").toDataURL();
-			user.updateProfile({
-				displayName: "",
-				photoURL: pURL
-			}).then(function() {
-			  // Update successful.
-			}).catch(function(error) {
-			  // An error happened.
-			});
-			newImage(document.getElementById("uid").value, pURL);
+			// user.updateProfile({
+			// 	displayName: "",
+			// 	photoURL: pURL
+			// }).then(function() {
+			//   // Update successful.
+			// }).catch(function(error) {
+			//   // An error happened.
+			// });
+			if(user != null)
+			{
+				newImage(document.getElementById("uid").value, pURL);
+			}
 		}
 		function uploadmedi()
 		{
-			newMedicine(document.getElementById("uid").value, document.getElementById("medi").value);
+			if (firebase.auth().currentUser != null)
+			{
+				newMedicine(document.getElementById("uid").value, document.getElementById("medi").value);
+			}
 		}
 		function handleFiles(files)
 		{
