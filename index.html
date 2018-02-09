@@ -134,7 +134,7 @@
 			var imgData = {
 				uid: uid,
 				image: image,
-				uploader: user
+				uploader_id: user
 			};
 			var newImgKey = firebase.database().ref().child('images').push().key;
 			var updates = {};
@@ -146,7 +146,7 @@
 			var imgData = {
 				uid: uid,
 				image: image,
-				uploader: user
+				uploader_id: user
 			};
 			var newImgKey = firebase.database().ref().child('medicine').push().key;
 			var updates = {};
@@ -157,24 +157,16 @@
 		{
 			var user = firebase.auth().currentUser;
 			var pURL = document.getElementById("canvas").toDataURL();
-			// user.updateProfile({
-			// 	displayName: "",
-			// 	photoURL: pURL
-			// }).then(function() {
-			//   // Update successful.
-			// }).catch(function(error) {
-			//   // An error happened.
-			// });
-			if(user != null && user != undefined)
+			if(user != null)
 			{
-				newImage(document.getElementById("uid").value, pURL, user);
+				newImage(document.getElementById("uid").value, pURL, user.uid);
 			}
 		}
 		function uploadmedi()
 		{
-			if(user != null && user != undefined)
+			if(user != null)
 			{
-				newMedicine(document.getElementById("uid").value, pURL, user);
+				newMedicine(document.getElementById("uid").value, document.getElementById("medi").value, user.uid);
 			}
 		}
 		function handleFiles(files)
