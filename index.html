@@ -164,6 +164,7 @@
 		}
 		function uploadmedi()
 		{
+			var user = firebase.auth().currentUser;
 			if(user != null)
 			{
 				newMedicine(document.getElementById("uid").value, document.getElementById("medi").value, user.uid);
