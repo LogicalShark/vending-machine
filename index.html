@@ -131,6 +131,9 @@
 		}
 		function newImage(uid, image)
 		{
+			console.log(uid);
+			console.log(image);
+			console.log(firebase.auth().user);
 			var imgData = {
 				uid: uid,
 				image: image,
