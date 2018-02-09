@@ -133,7 +133,7 @@
 		{
 			var imgData = {
 				uid: uid,
-				image: image
+				image: image,
 				uploader: firebase.auth().user
 			};
 			var newImgKey = firebase.database().ref().child('images').push().key;
@@ -145,7 +145,7 @@
 		{
 			var imgData = {
 				uid: uid,
-				image: image
+				image: image,
 				uploader: firebase.auth().user
 			};
 			var newImgKey = firebase.database().ref().child('medicine').push().key;
