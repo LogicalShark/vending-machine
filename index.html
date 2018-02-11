@@ -141,11 +141,11 @@
 			updates['/users/' + uid + '/images/' + newImgKey] = imgData;
 			return firebase.database().ref().update(updates);
 		}
-		function newMedicine(uid, image, user)
+		function newMedicine(uid, medic, user)
 		{
 			var imgData = {
 				uid: uid,
-				image: image,
+				medicine: medic,
 				uploader_id: user
 			};
 			var newImgKey = firebase.database().ref().child('medicine').push().key;
