@@ -141,11 +141,12 @@
 			updates['/users/' + uid + '/images/' + newImgKey] = imgData;
 			return firebase.database().ref().update(updates);
 		}
-		function newMedicine(uid, medic, user)
+		function newMedicine(uid, medic, num, user)
 		{
 			var imgData = {
 				uid: uid,
 				medicine: medic,
+				number: num,
 				uploader_id: user
 			};
 			var newImgKey = firebase.database().ref().child('medicine').push().key;
@@ -167,7 +168,14 @@
 			var user = firebase.auth().currentUser;
 			if(user != null)
 			{
-				newMedicine(document.getElementById("uid").value, document.getElementById("medi").value, user.uid);
+				m1 = document.getElementById("medi1").value;
+				m2 = document.getElementById("medi2").value;
+				m3 = document.getElementById("medi3").value;
+				doctor = user.uid;
+				patient = document.getElementById("uid").value;
+				newMedicine(patient, "Rosuvastatin", m1, doctor);
+				newMedicine(patient, "Pregabalin", m2, doctor);
+				newMedicine(patient, "Sitagliptin", m3, doctor;
 			}
 		}
 		function handleFiles(files)
@@ -198,6 +206,7 @@
 </script>
 </head>
 <body>
+	<center>
 	<div id="firebaseui-auth-container"></div>
 	<h1 style="text-align: center;">Vending Machine Doctor Console</h1>
 	<div>
@@ -221,8 +230,11 @@
 	</div>
 	<br><br>
 	<div>
-		<input type="text" id="medi" placeholder="New Medicine">
-		<button id="uploadmedi" onclick="uploadmedi()">Upload Medicine</button>
+		Rosuvastatin <input type="text" id="medi1" value="0"><br>
+		Pregabalin <input type="text" id="medi2" value="0"><br>
+		Sitagliptin <input type="text" id="medi3" value="0"><br>
+		<button id="uploadmedi" onclick="uploadmedi()">Upload Medicine</button><br>
 	</div>
+	</center>
 </body>
 </html>
