@@ -175,7 +175,7 @@
 				patient = document.getElementById("uid").value;
 				newMedicine(patient, "Rosuvastatin", m1, doctor);
 				newMedicine(patient, "Pregabalin", m2, doctor);
-				newMedicine(patient, "Sitagliptin", m3, doctor;
+				newMedicine(patient, "Sitagliptin", m3, doctor);
 			}
 		}
 		function handleFiles(files)
@@ -211,11 +211,11 @@
 	<h1 style="text-align: center;">Vending Machine Doctor Console</h1>
 	<div>
 		<input  type="text" id="uid" placeholder="Enter User ID Here">
-		<br>
+		<br><br>
 		<input type="file" id="myFile" onchange="handleFiles(this.files)" value="Upload Files">
 		<br>
-		<button id="startbutton">Take photo</button>
-		<button id="upload" onClick="upload()">Upload current photo</button>
+		<button id="startbutton">Capture photo</button>
+		<button id="upload" onClick="upload()">Upload captured photo</button>
 	</div>
 	<br>
 	<div>
