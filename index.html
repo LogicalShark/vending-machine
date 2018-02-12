@@ -197,24 +197,32 @@
 		}
 </script>
 </head>
-<body>
+<body style="background-color: #F2ADAD">
 	<div id="firebaseui-auth-container"></div>
 	<h1 style="text-align: center;">Vending Machine Doctor Console</h1>
-	<br>
-	<input type="text" id="uid" placeholder="User ID">
-	<div class="camera">
+	<div style="text-align: center;">
+		<input  type="text" id="uid" placeholder="Enter User ID Here">
+		<br>
+		<input type="file" id="myFile" onchange="handleFiles(this.files)" value="Upload Files">
+		<br>
 		<button id="startbutton">Take photo</button>
 		<button id="upload" onClick="upload()">Upload current photo</button>
-		<video id="video">Video stream not available.</video>
 	</div>
 	<br>
-	<canvas id="canvas">
-	</canvas>
-	<div class="output">
-		<img id="photo" alt="The screen capture will appear in this box.">
+	<div style="text-align: center;">
+		<div class="camera">
+			<video id="video">Video stream not available.</video>
+		</div>
+		<canvas id="canvas">
+		</canvas>
+		<div class="output">
+			<img id="photo" alt="The screen capture will appear in this box.">
+		</div>
 	</div>
-	<input type="file" id="myFile" onchange="handleFiles(this.files)" value="Upload Files">
-	<input type="text" id="medi" placeholder="Medicine">
-	<button id="uploadmedi" onclick="uploadmedi()">Upload Medicine</button>
+	<br><br>
+	<div style="text-align: center;">
+		<input type="text" id="medi" placeholder="New Medicine">
+		<button id="uploadmedi" onclick="uploadmedi()">Upload Medicine</button>
+	</div>
 </body>
 </html>
